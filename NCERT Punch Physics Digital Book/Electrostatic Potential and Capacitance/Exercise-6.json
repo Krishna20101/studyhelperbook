@@ -1,0 +1,595 @@
+{
+    "exercise_name": "Exercise-6",
+    "exercise_id": "5ffc0fe8748fc79584be2e91afcadbf7",
+    "questions": [
+        {
+            "id": "69a6f20a80df2c6d91124805",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/23aad799-f934-4299-8eee-cfa0f19cb09c.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d91124808",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124809",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112480a",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112480b",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d9112480b"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/3046989f-5c5e-458c-8763-1f065c4c1b29.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124828",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/574ce1df-a6b3-45bf-be24-d730488a89c9.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d9112484e",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112484f",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124850",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124851",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d9112484e"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/7b87b36e-e27c-4cae-a37b-e1a6928b2e73.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124816",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/e53b90f6-1384-4e3c-85d8-424135a76c73.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d9112483a",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112483b",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112483c",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112483d",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d9112483b"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/ac9703ca-61ef-45a7-8bef-683827088ff1.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d9112481d",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/ba539264-725b-46b4-a00c-adcdc9fc1e4e.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d91124844",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124845",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124846",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124847",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d91124845"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/6d12eb29-36ac-4e99-8d63-4ab077ce0b5c.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d9112480d",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/d6f3d236-ff9a-4f92-b0c7-5f63fc9d4fd1.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d91124823",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124824",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124825",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124826",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d91124825"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/babd8ce9-bb59-4be2-a703-305575b06c56.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124819",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/16cd4b14-3cc9-4be6-a977-ee4b0a98aa8d.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d9112483f",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124840",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124841",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124842",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d9112483f"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/9be5a091-cb77-4c12-8080-a9c773a6f944.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124810",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/18df15bf-28b3-42b4-b345-20ef6a30ff1b.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d9112482b",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112482c",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112482d",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112482e",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d9112482c"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/7daa11d7-0c58-4b22-9b86-c112eebdca9a.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124820",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/47d5a1bf-f7a3-4dd4-bfd6-6b5e8be1ac93.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d91124849",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112484a",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112484b",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112484c",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d9112484a"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/b797ad68-5e73-44ca-968d-14a9123d4c2c.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124830",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/075564ae-4bcd-4265-a23e-cef837ea80c0.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d91124853",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124854",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124855",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124856",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d91124855"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/a218b7d0-b974-46df-bf87-f51cf8544596.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124813",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/7c76d953-a95c-45c7-b54f-67694e5e7345.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d91124833",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124834",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124835",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124836",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d91124836"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/d04bc00e-46ed-40af-8f3a-2fda9df152cc.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d9112488b",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/f6c13c95-2f4d-4ff8-ac34-0aadd77e7898.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d911248a3",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d911248a4",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d911248a5",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d911248a6",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d911248a3"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/5098142e-5e4b-4a65-b895-cbb8b363658d.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124882",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/a95cc224-093e-44c7-bb9a-73d36cfdb11e.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d9112489e",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112489f",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d911248a0",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d911248a1",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d9112489e"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/b9b9b3b3-ec78-4e76-aa7c-168ee11f003d.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124893",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/43586079-74d1-4f05-bb2b-db38ecdca9ca.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d911248ab",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d911248ac",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d911248ad",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d911248ae",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d911248ac"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/408e92f6-941c-4c51-9b9f-7e10b310551c.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124896",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/a9206125-2a5e-4599-b994-9ccb3158d9a2.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d911248b0",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d911248b1",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d911248b2",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d911248b3",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d911248b2"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/c73a606f-79c2-47df-8f9e-83b6c5dffdf1.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124879",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/fe25d009-559b-479c-a8f6-3d5db2c0a218.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d91124899",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112489a",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112489b",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112489c",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d91124899"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/1ae9f828-675c-453d-8bb6-81a01ddf49ba.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124876",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/1f0b1b67-dc37-4769-9895-f8d8b7a821fb.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d9112488e",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112488f",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124890",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124891",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d9112488e"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/18f493a7-0404-4388-8766-f83601fba0c8.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124868",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/897f2159-2331-457f-983e-bb0bec304c94.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d9112486b",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112486c",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112486d",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112486e",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d9112486c"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/5a85d3f4-ea29-475d-a0be-34e15a013d94.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124870",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/58acaf6d-a534-4b97-8261-5183fe8568df.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d9112487d",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112487e",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d9112487f",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124880",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d9112487f"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/73b684ed-36d4-49a2-9690-e651bc139dfe.png"
+        },
+        {
+            "id": "69a6f20a80df2c6d91124873",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/23bf4074-d485-488d-a277-940c1897f537.png",
+            "options": [
+                {
+                    "id": "69a6f20a80df2c6d91124885",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124886",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124887",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a6f20a80df2c6d91124888",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a6f20a80df2c6d91124886"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/f6524ade-e06f-4965-ae2b-15e456279581.png"
+        }
+    ]
+}

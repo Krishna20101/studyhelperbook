@@ -1,0 +1,68 @@
+{
+    "exercise_name": "Exercise-5",
+    "exercise_id": "7966caf5bb173770fc374110b7a23e70",
+    "questions": [
+        {
+            "id": "69a11836df2aac02ec7e7016",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/745bb1c6-dad1-4f3d-9247-f08345120299.png",
+            "options": [
+                {
+                    "id": "69a11836df2aac02ec7e7019",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a11836df2aac02ec7e701a",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a11836df2aac02ec7e701b",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a11836df2aac02ec7e701c",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a11836df2aac02ec7e701b"
+            ],
+            "solution_image": ""
+        },
+        {
+            "id": "69a11836df2aac02ec7e700d",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/c2df662d-0515-461e-bfee-7d1d19282560.png",
+            "options": [
+                {
+                    "id": "69a11836df2aac02ec7e7010",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69a11836df2aac02ec7e7011",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69a11836df2aac02ec7e7012",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69a11836df2aac02ec7e7013",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69a11836df2aac02ec7e7013"
+            ],
+            "solution_image": ""
+        }
+    ]
+}

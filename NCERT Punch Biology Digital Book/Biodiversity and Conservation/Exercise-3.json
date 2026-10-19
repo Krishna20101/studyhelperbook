@@ -1,0 +1,68 @@
+{
+    "exercise_name": "Exercise-3",
+    "exercise_id": "ba1143339df092b2137a4d9309a57cb8",
+    "questions": [
+        {
+            "id": "69abc7c80b202391cff23fe8",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/a0a67df7-2aa3-46ea-b9d9-7ce213e7831f.png",
+            "options": [
+                {
+                    "id": "69abc7c80b202391cff23fee",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69abc7c80b202391cff23fef",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69abc7c80b202391cff23ff0",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69abc7c80b202391cff23ff1",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69abc7c80b202391cff23ff0"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/1984c919-e34b-4387-8e54-a2736091df5d.png"
+        },
+        {
+            "id": "69abc7c80b202391cff23feb",
+            "question_text": "",
+            "question_image": "https://static.pw.live/5b09189f7285894d9130ccd0/67363370-010e-47c2-8780-bae16ec8d471.png",
+            "options": [
+                {
+                    "id": "69abc7c80b202391cff23ff3",
+                    "text": "A",
+                    "image": ""
+                },
+                {
+                    "id": "69abc7c80b202391cff23ff4",
+                    "text": "B",
+                    "image": ""
+                },
+                {
+                    "id": "69abc7c80b202391cff23ff5",
+                    "text": "C",
+                    "image": ""
+                },
+                {
+                    "id": "69abc7c80b202391cff23ff6",
+                    "text": "D",
+                    "image": ""
+                }
+            ],
+            "correct_answer_ids": [
+                "69abc7c80b202391cff23ff6"
+            ],
+            "solution_image": "https://static.pw.live/5b09189f7285894d9130ccd0/ba46713a-38a5-46ed-9ef8-5d8354831560.png"
+        }
+    ]
+}
