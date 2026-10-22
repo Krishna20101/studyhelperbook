@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Study Helper Books</title>
+<meta name="description" content="Books to read, tests to practice.">
+<meta name="theme-color" content="#5c33f6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%235c33f6'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='26' font-weight='800' fill='white' text-anchor='middle'%3ESH%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f7ff;--text:#18181b;--muted:#71717a;--primary:#5c33f6;--primary-hover:#4823d6;--primary-soft:#f0ebff;--card:#ffffff;--border:#e4e4e7;--success:#16a34a;--success-bg:#f0fdf4;--error:#dc2626;--error-bg:#fef2f2}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-tap-highlight-color:transparent}
+html,body{max-width:100%;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;word-wrap:break-word;overflow-wrap:anywhere}
+img{max-width:100%}
+button{font-family:inherit}
+
+/* ---------- loader / logo / spinner ---------- */
+#loader{position:fixed;inset:0;z-index:300;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .35s}
+#loader.hide{opacity:0;pointer-events:none}
+.spinner{width:42px;height:42px;border-radius:50%;border:4px solid #e0d9ff;border-top-color:var(--primary);animation:spin .8s linear infinite;flex-shrink:0}
+.spinner.sm{width:24px;height:24px;border-width:3px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-text{color:var(--muted);font-weight:600;font-size:14px;text-align:center}
+.logo{background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;overflow:hidden;flex-shrink:0}
+.logo img{width:100%;height:100%;object-fit:cover;display:block}
+.logo.sm{width:34px;height:34px;border-radius:9px;font-size:14px}
+.logo.lg{width:72px;height:72px;border-radius:18px;font-size:26px}
+
+/* ---------- Telegram popup ---------- */
+#tg-overlay{position:fixed;inset:0;z-index:250;background:rgba(24,24,27,.55);display:none;align-items:center;justify-content:center;padding:20px}
+#tg-overlay.show{display:flex}
+.tg-card{background:var(--card);border-radius:22px;max-width:380px;width:100%;padding:30px 24px 24px;text-align:center;position:relative;overflow:hidden;animation:pop .25s ease-out}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+.tg-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:none;background:#f4f4f5;color:#52525b;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.tg-close:hover{background:#e4e4e7}
+.tg-icon{width:64px;height:64px;border-radius:50%;background:#229ed9;margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
+.tg-icon svg{width:32px;height:32px;fill:#fff}
+.tg-card h2{font-size:20px;font-weight:800;margin-bottom:8px;letter-spacing:-.3px}
+.tg-card p{font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:20px}
+.tg-join{display:block;width:100%;background:#229ed9;color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:13px;border-radius:12px}
+.tg-join:hover{background:#1b87ba}
+.tg-timer{margin-top:12px;font-size:12px;color:var(--muted);font-weight:600}
+.tg-bar{position:absolute;left:0;bottom:0;height:4px;width:100%;background:#229ed9;transform-origin:left;transform:scaleX(1)}
+.tg-bar.run{transition:transform 5s linear;transform:scaleX(0)}
+
+/* ---------- top bar ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border);padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand-text{font-weight:800;font-size:18px;letter-spacing:-.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---------- bottom nav (app style, fixed) ---------- */
+#bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;background:rgba(255,255,255,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid var(--border);padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 4px;border:none;background:none;color:var(--muted);font-size:11px;font-weight:700;cursor:pointer;border-radius:12px}
+.bn-item svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.bn-item:hover{background:var(--primary-soft);color:var(--primary)}
+.bn-item.active{color:var(--primary);text-shadow:0 0 12px rgba(92,51,246,.5)}
+
+/* ---------- layout ---------- */
+#main{flex:1;width:100%;padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+.container{max-width:1000px;margin:0 auto;padding:22px 16px 40px;width:100%}
+.page-title{font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:4px}
+.page-subtitle{color:var(--muted);font-size:15px;margin-bottom:8px}
+.section-title{font-size:20px;font-weight:800;margin-bottom:16px}
+
+/* ---------- home ---------- */
+.home-q{font-size:15px;font-weight:700;color:var(--muted);margin:20px 0 12px}
+.home-cards{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:720px){.home-cards{grid-template-columns:1fr 1fr}}
+.home-card{display:flex;flex-direction:column;align-items:flex-start;gap:12px;width:100%;text-align:left;background:linear-gradient(160deg,#ffffff 0%,#faf8ff 60%,#f4f1ff 100%);border:1.5px solid var(--border);border-radius:20px;padding:20px 18px;min-height:172px;cursor:pointer;transition:transform .18s,box-shadow .2s,border-color .2s}
+.home-card:active{transform:scale(.98)}
+.home-card:hover{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 14px 30px rgba(92,51,246,.18),0 0 0 3px rgba(92,51,246,.07)}
+.hc-ico{width:62px;height:62px;border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hc-ico svg{width:30px;height:30px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hc-books{background:linear-gradient(135deg,var(--primary-soft),#e2d9ff);box-shadow:0 4px 14px rgba(92,51,246,.18)}
+.hc-books svg{stroke:var(--primary)}
+.hc-tests{background:linear-gradient(135deg,#e6f6ec,#d3f1de);box-shadow:0 4px 14px rgba(22,163,74,.15)}
+.hc-tests svg{stroke:var(--success)}
+.hc-text{flex:1;min-width:0}
+.hc-text h3{font-size:19px;font-weight:800;margin-bottom:3px}
+.hc-text p{font-size:14px;color:var(--muted)}
+.hc-right{display:flex;flex-direction:row;align-items:center;justify-content:space-between;width:100%;margin-top:auto;flex-shrink:0}
+.hc-count{font-size:12px;font-weight:800;color:var(--primary);background:var(--primary-soft);padding:4px 10px;border-radius:20px;white-space:nowrap}
+.hc-count:empty{display:none}
+/* glowing Explore button - sits INSIDE each home card (both Books & Tests) */
+.hc-explore{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 20px;border-radius:999px;font-size:13.5px;font-weight:800;letter-spacing:.3px;color:#fff;pointer-events:none;background:linear-gradient(90deg,#7c3aed,#5c33f6 45%,#06b6d4);box-shadow:0 0 12px rgba(124,58,237,.5),0 0 26px rgba(92,51,246,.3);animation:glowpulse 2.2s ease-in-out infinite;flex-shrink:0}
+.hc-explore svg{width:15px;height:15px;fill:#ffd54d;filter:drop-shadow(0 0 5px rgba(255,213,77,.95))}
+@keyframes glowpulse{0%,100%{box-shadow:0 0 10px rgba(124,58,237,.45),0 0 24px rgba(92,51,246,.28)}50%{box-shadow:0 0 20px rgba(124,58,237,.85),0 0 44px rgba(6,182,212,.45)}}
+
+/* ---------- search ---------- */
+.search-wrap{position:relative;margin-bottom:18px}
+.search-wrap svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:#a1a1aa;fill:none;stroke-width:2;pointer-events:none}
+.search-input{width:100%;padding:11px 14px 11px 40px;border:1.5px solid var(--border);border-radius:12px;background:#fff;font-size:15px;outline:none;color:var(--text);min-width:0}
+.search-input:focus{border-color:var(--primary)}
+
+/* ---------- buttons ---------- */
+.btn{padding:11px 22px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;border:none;transition:background .2s,opacity .2s,box-shadow .2s,transform .12s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:active{transform:scale(.97)}
+.btn-block{width:100%}
+.btn-primary{background:linear-gradient(90deg,#6d28d9,#5c33f6 55%,#4f46e5);color:#fff;box-shadow:0 4px 14px rgba(92,51,246,.35)}
+.btn-primary:hover{background:linear-gradient(90deg,#5b21b6,#4823d6 55%,#4338ca);box-shadow:0 6px 22px rgba(92,51,246,.6)}
+.btn-primary:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.btn-dl{background:linear-gradient(90deg,#0f766e,#14b8a6);color:#fff;box-shadow:0 4px 14px rgba(15,118,110,.35)}
+.btn-dl:hover{background:linear-gradient(90deg,#115e59,#0d9488);box-shadow:0 6px 20px rgba(15,118,110,.55)}
+.btn-light{background:#e4e4e7;color:#333}
+.btn-light:disabled{opacity:.45;cursor:not-allowed}
+.btn-outline{background:#fff;color:var(--primary);border:1.5px solid var(--primary)}
+.btn-outline:hover{background:var(--primary-soft);box-shadow:0 4px 16px rgba(92,51,246,.25)}
+
+/* ---------- empty state + load more ---------- */
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;background:var(--card);border:1px solid var(--border);border-radius:18px;width:100%}
+.empty .em-ico{width:60px;height:60px;border-radius:50%;background:var(--primary-soft);margin:0 auto 14px;display:flex;align-items:center;justify-content:center}
+.empty .em-ico svg{width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:2}
+.empty h3{font-size:18px;font-weight:800;margin-bottom:6px}
+.empty p{color:var(--muted);font-size:14px}
+.empty .btn{margin-top:14px}
+.more-wrap{display:flex;justify-content:center;margin-top:24px}
+
+/* ---------- books grid (download tiles - wide & short, all same size) ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:14px}
+.card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:12px;text-align:center;min-width:0;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(92,51,246,.14);border-color:var(--primary)}
+.cover{width:100%;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#ece8ff;margin-bottom:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.cover svg{width:42%;height:auto;fill:none;stroke:var(--primary);stroke-width:1.6}
+.book-title{font-size:14px;font-weight:800;margin-bottom:10px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.tile-actions{margin-top:auto}
+.tile-btn{width:100%;padding:10px 6px;font-size:13.5px;border-radius:10px;white-space:nowrap}
+
+/* ---------- tests grid ---------- */
+.book-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:18px}
+.book-card{background:var(--card);border-radius:16px;padding:12px;cursor:pointer;border:1px solid var(--border);text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;min-width:0}
+.book-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,0,0,.06);border-color:var(--primary)}
+.cover-frame{width:100%;aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:#f4f4f5;margin-bottom:10px}
+.book-cover{width:100%;height:100%;object-fit:cover;display:block}
+.pill{display:inline-block;background:#f4f4f5;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;color:#52525b;margin-bottom:8px}
+.book-card .book-title{font-size:14px;font-weight:700}
+
+/* ---------- category bar + drawer ---------- */
+.cat-bar{width:100%;display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:12px 14px;margin-bottom:18px;cursor:pointer;text-align:left;color:var(--text);font-size:15px}
+.cat-bar:hover{border-color:var(--primary)}
+.cat-bar svg{width:20px;height:20px;stroke:var(--primary);fill:none;stroke-width:2;flex-shrink:0}
+.cat-label{color:var(--muted);font-weight:600}
+.cat-value{font-weight:800;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cat-bar.active{border-color:var(--primary);background:var(--primary-soft)}
+.cat-bar .cat-chev{stroke:#a1a1aa;stroke-width:2.5}
+#cat-overlay{position:fixed;inset:0;z-index:150;background:rgba(24,24,27,.5);display:none;align-items:flex-end;justify-content:center}
+#cat-overlay.show{display:flex}
+.cat-sheet{background:var(--card);width:100%;max-width:520px;border-radius:22px 22px 0 0;padding:10px 18px 24px;max-height:80vh;overflow-y:auto;animation:slideup .25s ease-out}
+@keyframes slideup{from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1}}
+.cat-handle{width:42px;height:5px;border-radius:3px;background:#d4d4d8;margin:0 auto 12px}
+.cat-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cat-head h3{font-size:18px;font-weight:800}
+.cat-x{width:34px;height:34px;border-radius:50%;border:none;background:#f4f4f5;color:#52525b;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.cat-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px;border:2px solid var(--border);border-radius:12px;margin-bottom:8px;cursor:pointer;font-size:16px;font-weight:600}
+.cat-item:hover{border-color:var(--primary)}
+.cat-item.sel{border-color:var(--primary);background:var(--primary-soft);color:var(--primary)}
+.cat-item .cnt{font-size:12px;font-weight:700;background:#f4f4f5;color:#52525b;padding:3px 10px;border-radius:20px}
+.cat-item.sel .cnt{background:var(--primary);color:#fff}
+
+/* ---------- test book (chapters) ---------- */
+.back-btn{background:transparent;border:none;color:var(--muted);font-weight:600;font-size:15px;cursor:pointer;padding:0;margin-bottom:18px;display:flex;align-items:center;gap:5px}
+.back-btn:hover{color:var(--primary)}
+.book-header{display:flex;gap:22px;align-items:center;margin-bottom:30px;background:var(--card);padding:22px;border-radius:20px;border:1px solid var(--border)}
+.book-header .cover-frame{width:100px;flex-shrink:0;margin-bottom:0}
+.book-header h1{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
+.book-header p{color:var(--muted);font-size:15px}
+.chapters-container{display:flex;flex-direction:column;gap:14px}
+.chapter-card{background:var(--card);border-radius:16px;border:1px solid var(--border);overflow:hidden}
+.chapter-header{padding:18px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;user-select:none}
+.chapter-header:hover{background:#fafafa}
+.chapter-no{color:var(--primary);font-weight:800;font-size:13px;background:var(--primary-soft);padding:6px 11px;border-radius:8px;flex-shrink:0}
+.chapter-title-wrap{flex:1;min-width:0}
+.chapter-title-wrap h2{font-size:17px;font-weight:700;margin-bottom:3px}
+.chapter-title-wrap p{font-size:13px;color:var(--muted)}
+.chevron{width:20px;height:20px;stroke:#a1a1aa;fill:none;stroke-width:2.5;transition:transform .25s;flex-shrink:0}
+.chapter-card.open .chevron{transform:rotate(180deg)}
+.chapter-content{display:none;padding:18px 20px 20px;border-top:1px solid #f4f4f5;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.chapter-card.open .chapter-content{display:grid}
+.ex-btn{background:#f8f9fa;border:1px solid var(--border);padding:14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;transition:border-color .2s,background .2s;text-align:left}
+.ex-btn:hover{border-color:var(--primary);background:var(--primary-soft)}
+.ex-btn h4{font-size:15px;font-weight:700;margin-bottom:3px}
+.ex-btn span{font-size:13px;color:var(--muted)}
+.play-icon{width:32px;height:32px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.play-icon svg{width:12px;height:12px;fill:#fff;margin-left:2px}
+
+/* ---------- quiz ---------- */
+#quiz-screen{display:none;position:fixed;inset:0;z-index:110;background:var(--bg);flex-direction:column}
+.quiz-header{background:var(--card);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--border)}
+.quiz-header-left{display:flex;align-items:center;gap:14px;min-width:0}
+.quiz-header-left .back-btn{margin-bottom:0;flex-shrink:0}
+.quiz-title{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.quiz-subtitle{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#quiz-progress{font-weight:700;font-size:15px;flex-shrink:0}
+.quiz-body{display:flex;flex:1;overflow:hidden;min-height:0}
+.quiz-main{flex:1;padding:24px;overflow-y:auto;display:flex;flex-direction:column;align-items:center;min-width:0}
+.question-container{background:var(--card);border-radius:16px;border:1px solid var(--border);width:100%;max-width:800px;padding:24px}
+.question-meta{display:flex;justify-content:space-between;margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:12px;gap:10px}
+.q-num{font-size:19px;font-weight:800;color:var(--primary)}
+.q-marks{color:var(--muted);font-size:14px;font-weight:600}
+.question-text{font-size:17px;font-weight:500;line-height:1.6;margin-bottom:18px}
+.question-image{max-width:100%;height:auto;border-radius:8px;margin-bottom:22px;border:1px solid var(--border);display:block}
+.options-list{display:flex;flex-direction:column;gap:10px}
+.option-item{display:flex;align-items:center;padding:14px;border:2px solid var(--border);border-radius:12px;cursor:pointer;font-size:16px;font-weight:500;transition:border-color .2s,background .2s}
+.option-item:hover{border-color:var(--primary);background:#f8f6ff}
+.option-item.selected{border-color:var(--primary);background:var(--primary-soft)}
+.option-item.correct{border-color:var(--success);background:var(--success-bg)}
+.option-item.wrong{border-color:var(--error);background:var(--error-bg)}
+.option-item.locked{cursor:default}
+.option-label{width:26px;height:26px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;margin-right:12px;font-weight:700;flex-shrink:0;background:#fff}
+.option-item.selected .option-label{background:var(--primary);color:#fff;border-color:var(--primary)}
+.option-img{max-height:40px;margin-left:10px}
+.solution-box{background:#f8f9fa;border:1px solid var(--border);border-radius:12px;padding:18px;margin-top:22px;display:none}
+.solution-box h4{color:var(--primary);font-size:16px;margin-bottom:12px}
+.solution-box img{max-width:100%;height:auto;border-radius:8px;display:block}
+.quiz-footer{margin-top:22px;display:flex;justify-content:space-between;gap:10px;width:100%;max-width:800px}
+.quiz-tray{width:270px;background:var(--card);border-left:1px solid var(--border);padding:24px;overflow-y:auto;flex-shrink:0}
+.tray-title{font-size:16px;font-weight:700;margin-bottom:16px}
+.tray-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.tray-btn{aspect-ratio:1;border-radius:8px;border:1px solid var(--border);background:#f4f4f5;font-weight:600;font-size:14px;color:#52525b;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.tray-btn:hover{border-color:var(--primary)}
+.tray-btn.current{border-color:var(--primary);background:var(--primary-soft);color:var(--primary)}
+.tray-btn.correct{background:var(--success);color:#fff;border-color:var(--success)}
+.tray-btn.wrong{background:var(--error);color:#fff;border-color:var(--error)}
+
+/* result */
+.result{text-align:center;padding:10px 0}
+.result h2{font-size:24px;font-weight:800;margin-bottom:6px}
+.result .score{font-size:46px;font-weight:800;color:var(--primary);margin:10px 0 4px}
+.result .sub{color:var(--muted);font-size:14px;margin-bottom:22px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
+.stat{border-radius:12px;padding:14px 6px;border:1px solid var(--border)}
+.stat b{display:block;font-size:22px;font-weight:800}
+.stat span{font-size:12px;color:var(--muted);font-weight:600}
+.stat.ok{background:var(--success-bg)} .stat.ok b{color:var(--success)}
+.stat.bad{background:var(--error-bg)} .stat.bad b{color:var(--error)}
+.stat.skip{background:#f4f4f5}
+.result-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* ---------- busy + toast ---------- */
+#busy{position:fixed;inset:0;z-index:200;background:rgba(245,247,255,.75);display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+#busy .loader-text{color:var(--text)}
+#toast{position:fixed;left:50%;bottom:calc(80px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:#18181b;color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:600;z-index:400;opacity:0;pointer-events:none;transition:all .25s;max-width:90%;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- mobile ---------- */
+@media (max-width:760px){
+  .topbar{padding-left:14px;padding-right:14px}
+  .container{padding:18px 14px 34px}
+  .page-title{font-size:25px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .book-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .book-header{padding:16px;gap:14px}
+  .book-header .cover-frame{width:78px}
+  .book-header h1{font-size:19px}
+  .chapter-header{padding:14px}
+  .chapter-content{padding:14px;grid-template-columns:1fr}
+  .quiz-header{padding:10px 14px}
+  .quiz-body{flex-direction:column;overflow-y:auto}
+  .quiz-main{overflow:visible;padding:14px}
+  .question-container{padding:16px}
+  .question-text{font-size:16px}
+  .quiz-footer{flex-wrap:wrap;justify-content:center}
+  .quiz-tray{width:100%;border-left:none;border-top:1px solid var(--border);padding:16px;overflow:visible}
+  .tray-grid{grid-template-columns:repeat(8,1fr)}
+}
+@media print{#viewer,#quiz-screen,.topbar,#main,#bottom-nav{display:none!important}body::before{content:"Printing is disabled.";display:block;padding:40px}}
+</style>
+</head>
+<body>
+
+<!-- Initial loader -->
+<div id="loader">
+  <div class="logo lg" data-logo></div>
+  <div class="spinner"></div>
+  <div class="loader-text">Loading Study Helper Books…</div>
+</div>
+
+<!-- Telegram popup -->
+<div id="tg-overlay">
+  <div class="tg-card">
+    <button class="tg-close" id="tg-close" aria-label="Close">&times;</button>
+    <div class="tg-icon">
+      <svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+    </div>
+    <h2>Join our Telegram</h2>
+    <p>This website can be banned at any time. Join our Telegram channel now so you never lose access.</p>
+    <a class="tg-join" id="tg-link" href="#" target="_blank" rel="noopener">Join Telegram</a>
+    <div class="tg-timer" id="tg-timer">Closing in 5s</div>
+    <div class="tg-bar" id="tg-bar"></div>
+  </div>
+</div>
+
+
+<!-- Category drawer (tests) -->
+<div id="cat-overlay">
+  <div class="cat-sheet">
+    <div class="cat-handle"></div>
+    <div class="cat-head"><h3>Categories</h3><button class="cat-x" id="cat-close" aria-label="Close">&times;</button></div>
+    <div id="cat-list"></div>
+  </div>
+</div>
+
+<!-- Top bar -->
+<header class="topbar">
+  <div class="brand">
+    <div class="logo sm" data-logo></div>
+    <div class="brand-text" id="brand-name">Study Helper Books</div>
+  </div>
+</header>
+
+<!-- Main screens -->
+<main id="main">
+
+  <!-- HOME -->
+  <section id="screen-home" class="screen container">
+    <h1 class="page-title">Study Helper Books</h1>
+    <p class="page-subtitle">Books to read. Tests to practice.</p>
+    <h2 class="home-q">Where do you want to go?</h2>
+    <div class="home-cards">
+      <button class="home-card" id="hc-books" type="button">
+        <div class="hc-ico hc-books"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="hc-text"><h3>Books</h3><p>Get books &amp; PDFs</p></div>
+        <div class="hc-right"><span class="hc-count" id="hc-books-count"></span><span class="hc-explore"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>Explore</span></div>
+      </button>
+      <button class="home-card" id="hc-tests" type="button">
+        <div class="hc-ico hc-tests"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div class="hc-text"><h3>Tests</h3><p>Chapters &amp; practice quizzes</p></div>
+        <div class="hc-right"><span class="hc-count" id="hc-tests-count"></span><span class="hc-explore"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>Explore</span></div>
+      </button>
+    </div>
+  </section>
+
+  <!-- BOOKS -->
+  <section id="screen-books" class="screen container" style="display:none">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="search" class="search-input" id="search-books" placeholder="Search books…" autocomplete="off">
+    </div>
+    <div class="grid" id="books-grid"></div>
+    <div class="more-wrap" id="books-more"></div>
+  </section>
+
+  <!-- TESTS -->
+  <section id="screen-tests" class="screen container" style="display:none">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="search" class="search-input" id="search-tests" placeholder="Search test books…" autocomplete="off">
+    </div>
+    <button class="cat-bar" id="cat-bar" type="button" style="display:none">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+      <span class="cat-label">Category:</span>
+      <span class="cat-value" id="cat-value">All</span>
+      <svg class="cat-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="book-grid" id="test-grid"></div>
+    <div class="more-wrap" id="test-more"></div>
+  </section>
+
+  <!-- TEST BOOK (chapters + exercises) -->
+  <section id="screen-testbook" class="screen container" style="display:none">
+    <button class="back-btn" id="testbook-back" type="button">&larr; Back to Tests</button>
+    <div class="book-header">
+      <div class="cover-frame"><img id="tb-cover" class="book-cover" alt="Cover"></div>
+      <div style="min-width:0">
+        <span class="pill">Digital Book</span>
+        <h1 id="tb-title">Book</h1>
+        <p id="tb-meta">Loading chapters…</p>
+      </div>
+    </div>
+    <h2 class="section-title">Chapters &amp; exercises</h2>
+    <div class="chapters-container" id="chapters-list"></div>
+    <div class="more-wrap" id="chapters-more"></div>
+  </section>
+</main>
+
+<!-- Bottom nav (fixed, app style) -->
+<nav id="bottom-nav">
+  <button class="bn-item active" data-tab="home" type="button"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h5v-6h4v6h5V9.5"/></svg><span>Home</span></button>
+  <button class="bn-item" data-tab="books" type="button"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>Books</span></button>
+  <button class="bn-item" data-tab="tests" type="button"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>Tests</span></button>
+</nav>
+
+
+<!-- Quiz (overlay) -->
+<div id="quiz-screen">
+  <div class="quiz-header">
+    <div class="quiz-header-left" style="min-width:0">
+      <button class="back-btn" id="quiz-exit" type="button">&larr; Exit</button>
+      <div style="min-width:0">
+        <h3 class="quiz-title" id="quiz-chapter-title">Chapter</h3>
+        <p class="quiz-subtitle" id="quiz-exercise-title">Exercise</p>
+      </div>
+    </div>
+    <div id="quiz-progress">1 / 10</div>
+  </div>
+  <div class="quiz-body">
+    <div class="quiz-main">
+      <div class="question-container" id="question-container"></div>
+      <div class="quiz-footer" id="quiz-footer">
+        <button class="btn btn-light" id="prev-btn" type="button">&larr; Previous</button>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-primary" id="submit-btn" type="button">Check Answer</button>
+          <button class="btn btn-primary" id="next-btn" type="button" style="display:none">Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+    <div class="quiz-tray">
+      <h3 class="tray-title">Question Tray</h3>
+      <div class="tray-grid" id="tray-grid"></div>
+    </div>
+  </div>
+</div>
+
+<div id="busy"><div class="spinner"></div><div class="loader-text">Loading practice set…</div></div>
+<div id="toast"></div>
+
+<script>
+/* =========================================================
+   SETTINGS - edit these values
+   ========================================================= */
+const CONFIG = {
+  APP_NAME: 'Study Helper Books',
+  LOGO_URL: '',                                    // <-- paste your logo link here (empty = "SH" letter logo)
+  TELEGRAM_LINK: 'https://t.me/studyhelperpw',     // <-- your Telegram channel
+  /* ---- Tests section: data lives in this PUBLIC GitHub repo ---- */
+  GITHUB_USER: 'Krishna20101',
+  GITHUB_REPO: 'studyhelperbook',
+  GITHUB_BRANCH: 'main',
+  INDEX_FILE: 'index.json',
+  CACHE_MINUTES: 30,
+  POPUP_SECONDS: 5,
+  PAGE_SIZE: 10
+};
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+function debounce(fn, ms){ let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+const natural = (a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+
+/* ---------- branding ---------- */
+document.title = CONFIG.APP_NAME;
+$('brand-name').textContent = CONFIG.APP_NAME;
+document.querySelectorAll('[data-logo]').forEach(box => {
+  box.textContent = 'SH';
+  if (CONFIG.LOGO_URL) {
+    const img = new Image();
+    img.alt = CONFIG.APP_NAME;
+    img.onload = () => { box.textContent = ''; box.style.background = 'transparent'; box.appendChild(img); };
+    img.src = CONFIG.LOGO_URL;
+  }
+});
+
+/* ---------- visitor id (books stats) ---------- */
+function getVid(){
+  let v = null;
+  try { v = localStorage.getItem('shb_vid'); } catch(e){}
+  if (!v || !/^[A-Za-z0-9_-]{8,64}$/.test(v)){
+    const a = new Uint8Array(12); (window.crypto || window.msCrypto).getRandomValues(a);
+    v = Array.from(a, b => b.toString(16).padStart(2, '0')).join('');
+    try { localStorage.setItem('shb_vid', v); } catch(e){}
+  }
+  return v;
+}
+const VID = getVid();
+function post(url){
+  return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ vid: VID }) });
+}
+
+/* ---------- toast + busy ---------- */
+let toastTimer;
+function toast(msg){
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+function showBusy(on){ $('busy').style.display = on ? 'flex' : 'none'; }
+
+/* =========================================================
+   STATE
+   ========================================================= */
+let currentScreen = 'home';
+let allBooks = [], booksLoaded = false;
+let testBooks = [], testsLoaded = false, testCat = 'All', testQuery = '', tbQuery = '';
+let currentBook = null, currentTopic = null, currentExercise = null;
+let currentIndex = 0, selectedOptionId = null, isAnswered = false, answersState = {}, quizFinished = false, quizActive = false;
+let rootFolders = null;
+const exCache = new Map();
+
+/* =========================================================
+   SCREENS + BOTTOM NAV
+   ========================================================= */
+const SCREENS = { home: 'screen-home', books: 'screen-books', tests: 'screen-tests', testbook: 'screen-testbook' };
+function showScreen(name){
+  currentScreen = name;
+  Object.keys(SCREENS).forEach(k => { $(SCREENS[k]).style.display = (k === name) ? 'block' : 'none'; });
+  const navKey = (name === 'testbook') ? 'tests' : name;
+  document.querySelectorAll('#bottom-nav .bn-item').forEach(b => b.classList.toggle('active', b.dataset.tab === navKey));
+  window.scrollTo(0, 0);
+}
+function pushTab(tab){
+  if (quizActive) return;
+  if (tab === currentScreen) return;
+  history.pushState({ v: tab }, '');
+  showScreen(tab);
+}
+document.querySelectorAll('#bottom-nav .bn-item').forEach(b => b.onclick = () => pushTab(b.dataset.tab));
+$('hc-books').onclick = () => pushTab('books');
+$('hc-tests').onclick = () => pushTab('tests');
+
+function updateHomeCount(which){
+  if (which === 'books' && booksLoaded) $('hc-books-count').textContent = allBooks.length + ' books';
+  if (which === 'tests' && testsLoaded) $('hc-tests-count').textContent = testBooks.length + ' books';
+}
+
+/* =========================================================
+   SHARED: paginated list + empty state
+   ========================================================= */
+function makeList(container, moreWrap, items, renderItem, empty){
+  container.innerHTML = '';
+  moreWrap.innerHTML = '';
+  if (!items.length){ container.appendChild(buildEmpty(empty.title, empty.text)); return; }
+  let shown = 0;
+  const btn = el('button', 'btn btn-outline');
+  function update(){
+    const left = items.length - shown;
+    if (left > 0){
+      btn.textContent = 'Load More (' + left + ' left)';
+      btn.type = 'button';
+      if (!btn.parentNode) moreWrap.appendChild(btn);
+    } else if (btn.parentNode) btn.remove();
+  }
+  function more(){
+    items.slice(shown, shown + CONFIG.PAGE_SIZE).forEach(it => container.appendChild(renderItem(it)));
+    shown = Math.min(items.length, shown + CONFIG.PAGE_SIZE);
+    update();
+  }
+  btn.onclick = more;
+  more();
+}
+function buildEmpty(title, text){
+  const d = el('div', 'empty');
+  d.insertAdjacentHTML('beforeend', '<div class="em-ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>');
+  d.appendChild(el('h3', '', title));
+  d.appendChild(el('p', '', text));
+  return d;
+}
+function spinnerBlock(text){
+  const d = el('div', 'empty');
+  d.innerHTML = '<div class="spinner" style="margin:0 auto 14px"></div>';
+  d.appendChild(el('p', '', text));
+  return d;
+}
+
+/* =========================================================
+   BOOKS (PDF library - served by bot_server.py)
+   ========================================================= */
+const BOOK_SVG = '<svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21a2 2 0 0 1 2-2h13"/></svg>';
+
+/* --- simple download tile: cover + name + one Download button --- */
+function bookCard(b){
+  const card = el('div', 'card');
+  const cv = el('div', 'cover');
+  if (b.cover){
+    const i = new Image(); i.alt = ''; i.loading = 'lazy';
+    i.onerror = () => { cv.innerHTML = BOOK_SVG; };
+    i.src = b.cover; cv.appendChild(i);
+  } else cv.innerHTML = BOOK_SVG;
+  card.appendChild(cv);
+  const t = el('div', 'book-title', b.name);
+  t.title = b.name;
+  card.appendChild(t);
+  const db = el('button', 'btn btn-dl tile-btn', '⬇ Download');
+  db.type = 'button';
+  db.title = 'Get the PDF on Telegram';
+  db.onclick = () => { if (b.dl) window.open(b.dl, '_blank', 'noopener'); };
+  const row = el('div', 'tile-actions');
+  row.appendChild(db);
+  card.appendChild(row);
+  return card;
+}
+function applyBooksSearch(){
+  if (!booksLoaded) return;
+  const q = $('search-books').value.trim().toLowerCase();
+  const items = allBooks.filter(b => !q || (b.name || '').toLowerCase().includes(q));
+  makeList($('books-grid'), $('books-more'), items, bookCard,
+    { title: 'No results found', text: q ? 'Try a different keyword.' : 'No books yet. Please check back soon.' });
+}
+async function loadBooks(){
+  $('books-grid').innerHTML = '';
+  $('books-more').innerHTML = '';
+  $('books-grid').appendChild(spinnerBlock('Loading books…'));
+  try {
+    const r = await fetch('/api/books', { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    allBooks = await r.json();
+    booksLoaded = true;
+    updateHomeCount('books');
+    applyBooksSearch();
+  } catch (e) {
+    console.error(e);
+    const g = $('books-grid'); g.innerHTML = ''; $('books-more').innerHTML = '';
+    const d = buildEmpty('Could not load books', 'Check your connection and try again.');
+    const b = el('button', 'btn btn-primary', 'Retry'); b.type = 'button'; b.onclick = loadBooks;
+    d.appendChild(b);
+    g.appendChild(d);
+  }
+}
+$('search-books').addEventListener('input', debounce(applyBooksSearch, 250));
+
+/* =========================================================
+   TESTS (practice data from the public GitHub repo)
+   ========================================================= */
+const COVER_FALLBACK = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="180" height="240"><rect width="100%" height="100%" fill="#ece8ff"/><text x="50%" y="52%" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="#5c33f6">Book</text></svg>');
+
+function coverImg(src, alt){
+  const i = el('img', 'book-cover');
+  i.loading = 'lazy'; i.alt = alt || 'Cover';
+  i.onerror = () => { i.onerror = null; i.src = COVER_FALLBACK; };
+  i.src = src || COVER_FALLBACK;
+  return i;
+}
+const CATEGORIES = ['Class 10', 'Class 11', 'Class 12', 'NEET', 'JEE', 'Other'];
+function testBookMatches(b, q){
+  if (!q) return true;
+  q = q.toLowerCase();
+  if ((b.book_name || '').toLowerCase().includes(q)) return true;
+  return (b.topics || []).some(t => (t.topic_name || '').toLowerCase().includes(q));
+}
+function testBookInCat(b){ return testCat === 'All' || (b.categories || []).includes(testCat); }
+function renderTests(){
+  if (!testsLoaded){
+    $('test-grid').innerHTML = '';
+    $('test-more').innerHTML = '';
+    $('test-grid').appendChild(spinnerBlock('Loading tests…'));
+    return;
+  }
+  const q = testQuery.trim();
+  const items = testBooks.filter(b => testBookMatches(b, q) && testBookInCat(b));
+  makeList($('test-grid'), $('test-more'), items, book => {
+    const card = el('div', 'book-card');
+    const frame = el('div', 'cover-frame');
+    frame.appendChild(coverImg(book.cover_url, book.book_name));
+    card.appendChild(frame);
+    card.appendChild(el('span', 'pill', (book.categories && book.categories[0]) || 'Other'));
+    card.appendChild(el('h3', 'book-title', book.book_name || 'Untitled'));
+    card.onclick = () => openTestBook(book);
+    return card;
+  }, { title: 'No results found', text: (q || testCat !== 'All') ? 'Try a different keyword or category.' : 'No test books available yet.' });
+}
+async function loadTests(){
+  $('test-grid').innerHTML = '';
+  $('test-more').innerHTML = '';
+  $('test-grid').appendChild(spinnerBlock('Loading tests…'));
+  try {
+    const res = await fetch(rawUrl([CONFIG.INDEX_FILE]));
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    if (!data || !Array.isArray(data.books)) throw new Error('Invalid format');
+    testBooks = data.books.map(b => ({
+      book_id: b.book_id,
+      book_name: b.title || b.book_name || 'Untitled',
+      folder_name: b.folder_name || b.title || b.book_name || '',
+      cover_url: b.cover_url || '',
+      categories: (Array.isArray(b.categories) && b.categories.length) ? b.categories : ['Other']
+    }));
+    testsLoaded = true;
+    $('cat-bar').style.display = '';
+    updateHomeCount('tests');
+    renderTests();
+  } catch (err) {
+    console.error(err);
+    const g = $('test-grid'); g.innerHTML = ''; $('test-more').innerHTML = '';
+    const d = buildEmpty('Could not load tests', 'Check your internet connection and try again.');
+    const b = el('button', 'btn btn-primary', 'Retry'); b.type = 'button'; b.onclick = loadTests;
+    d.appendChild(b);
+    g.appendChild(d);
+  }
+}
+$('search-tests').addEventListener('input', debounce(() => {
+  const v = $('search-tests').value;
+  if (currentScreen === 'tests'){ testQuery = v; renderTests(); }
+  else if (currentScreen === 'testbook'){ tbQuery = v; renderChapters(); }
+}, 250));
+
+/* ---------- category drawer ---------- */
+function openCats(){
+  const list = $('cat-list');
+  list.innerHTML = '';
+  const total = testBooks.length;
+  const add = (name, count) => {
+    const row = el('div', 'cat-item' + (testCat === name ? ' sel' : ''));
+    row.appendChild(el('span', '', name));
+    row.appendChild(el('span', 'cnt', String(count)));
+    row.onclick = () => { testCat = name; closeCats(); updateCatBar(); renderTests(); };
+    list.appendChild(row);
+  };
+  add('All', total);
+  CATEGORIES.forEach(c => {
+    const n = testBooks.filter(b => (b.categories || []).includes(c)).length;
+    if (n > 0) add(c, n);
+  });
+  $('cat-overlay').classList.add('show');
+}
+function closeCats(){ $('cat-overlay').classList.remove('show'); }
+function updateCatBar(){
+  $('cat-value').textContent = testCat;
+  $('cat-bar').classList.toggle('active', testCat !== 'All');
+}
+$('cat-bar').onclick = openCats;
+$('cat-close').onclick = closeCats;
+$('cat-overlay').addEventListener('click', e => { if (e.target === $('cat-overlay')) closeCats(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCats(); });
+
+/* ---------- GitHub loading ---------- */
+function rawUrl(parts){
+  return 'https://raw.githubusercontent.com/' + CONFIG.GITHUB_USER + '/' + CONFIG.GITHUB_REPO + '/' +
+         CONFIG.GITHUB_BRANCH + '/' + parts.map(encodeURIComponent).join('/');
+}
+function apiUrl(path){
+  return 'https://api.github.com/repos/' + CONFIG.GITHUB_USER + '/' + CONFIG.GITHUB_REPO + '/' + path;
+}
+function cacheGet(k){
+  try { const o = JSON.parse(localStorage.getItem('shb_' + k)); if (o && Date.now() - o.t < CONFIG.CACHE_MINUTES * 60000) return o.v; } catch(e){}
+  return null;
+}
+function cacheSet(k, v){ try { localStorage.setItem('shb_' + k, JSON.stringify({ t: Date.now(), v })); } catch(e){} }
+async function ghJson(url){
+  const r = await fetch(url, { headers: { Accept: 'application/vnd.github+json' } });
+  if (r.status === 403 || r.status === 429) throw new Error('RATE');
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  return r.json();
+}
+async function getRootFolders(){
+  if (rootFolders) return rootFolders;
+  let map = cacheGet('root');
+  if (!map){
+    const data = await ghJson(apiUrl('git/trees/' + encodeURIComponent(CONFIG.GITHUB_BRANCH)));
+    map = {};
+    (data.tree || []).forEach(t => { if (t.type === 'tree') map[t.path] = t.sha; });
+    cacheSet('root', map);
+  }
+  rootFolders = map;
+  return map;
+}
+// Preferred: structure/<book_id>.json (fast, no API rate limits)
+async function getBookTopics(book){
+  const ck = 'struct_' + book.book_id;
+  const cached = book.book_id ? cacheGet(ck) : null;
+  if (cached) return cached;
+  if (book.book_id){
+    try {
+      const r = await fetch(rawUrl(['structure', book.book_id + '.json']));
+      if (r.ok){
+        const d = await r.json();
+        if (d && Array.isArray(d.topics)){ cacheSet(ck, d.topics); return d.topics; }
+      }
+    } catch (e) { /* fall back to the GitHub API below */ }
+  }
+  return getBookTopicsFromApi(book.folder_name);
+}
+// Fallback: reads <book folder>/<chapter folder>/<exercise>.json straight from the repo
+async function getBookTopicsFromApi(folder){
+  const ck = 'book_' + folder;
+  const cached = cacheGet(ck);
+  if (cached) return cached;
+  const root = await getRootFolders();
+  let sha = root[folder];
+  if (!sha){
+    const key = Object.keys(root).find(k => k.trim().toLowerCase() === String(folder).trim().toLowerCase());
+    if (key) { folder = key; sha = root[key]; }
+  }
+  if (!sha) throw new Error('NOFOLDER');
+  const data = await ghJson(apiUrl('git/trees/' + sha + '?recursive=1'));
+  const byTopic = {};
+  (data.tree || []).forEach(t => {
+    if (t.type !== 'blob' || !/\.json$/i.test(t.path)) return;
+    const seg = t.path.split('/');
+    if (seg.length !== 2) return;
+    (byTopic[seg[0]] = byTopic[seg[0]] || []).push({ name: seg[1].replace(/\.json$/i, ''), file: seg[1] });
+  });
+  const topics = Object.keys(byTopic).sort(natural).map(name => ({
+    topic_name: name,
+    files: byTopic[name].sort((a, b) => natural(a.name, b.name))
+  }));
+  cacheSet(ck, topics);
+  return topics;
+}
+
+/* ---------- test book screen (chapters) ---------- */
+function openTestBook(book, push){
+  if (push === undefined) push = true;
+  currentBook = book;
+  tbQuery = '';
+  $('search-tests').value = '';
+  $('tb-title').textContent = book.book_name || 'Untitled';
+  const cov = $('tb-cover');
+  cov.onerror = function(){ this.onerror = null; this.src = COVER_FALLBACK; };
+  cov.src = book.cover_url || COVER_FALLBACK;
+  $('tb-meta').textContent = 'Loading chapters…';
+  if (push) history.pushState({ v: 'testbook', id: book.book_id || book.folder_name }, '');
+  showScreen('testbook');
+  loadBookTopics(book);
+}
+async function loadBookTopics(book){
+  const list = $('chapters-list');
+  $('chapters-more').innerHTML = '';
+  list.innerHTML = '';
+  list.appendChild(spinnerBlock('Loading chapters…'));
+  try {
+    if (!book.topics) book.topics = await getBookTopics(book);
+    if (currentBook !== book) return;
+    const n = book.topics.length;
+    $('tb-meta').textContent = n + (n === 1 ? ' chapter' : ' chapters');
+    renderChapters();
+  } catch (err) {
+    console.error(err);
+    if (currentBook !== book) return;
+    $('tb-meta').textContent = 'Could not load chapters';
+    list.innerHTML = '';
+    let title = 'Could not load chapters', text = 'Check your internet connection and try again.';
+    if (err.message === 'RATE'){ title = 'Please wait a moment'; text = 'Too many requests. Try again in a few minutes.'; }
+    if (err.message === 'NOFOLDER'){ title = 'Book folder not found'; text = 'This book has no folder in the library yet.'; }
+    const d = el('div', 'empty');
+    d.appendChild(el('h3', '', title));
+    d.appendChild(el('p', '', text));
+    const b = el('button', 'btn btn-primary', 'Retry'); b.type = 'button'; b.onclick = () => loadBookTopics(book);
+    d.appendChild(b);
+    list.appendChild(d);
+  }
+}
+function renderChapters(){
+  if (!currentBook || !currentBook.topics) return;
+  const q = tbQuery.trim().toLowerCase();
+  const items = (currentBook.topics || [])
+    .map((t, i) => ({ t, i }))
+    .filter(o => !q || (o.t.topic_name || '').toLowerCase().includes(q));
+  makeList($('chapters-list'), $('chapters-more'), items, o => buildChapter(o.t, o.i),
+    { title: 'No results found', text: q ? 'Try a different keyword.' : 'No chapters available.' });
+}
+function buildChapter(topic, index){
+  const card = el('div', 'chapter-card');
+  const header = el('div', 'chapter-header');
+  header.appendChild(el('span', 'chapter-no', 'CH-' + (index + 1)));
+  const wrap = el('div', 'chapter-title-wrap');
+  wrap.appendChild(el('h2', '', topic.topic_name || 'Chapter'));
+  const exs = topic.files || [];
+  wrap.appendChild(el('p', '', exs.length + (exs.length === 1 ? ' practice set' : ' practice sets')));
+  header.appendChild(wrap);
+  header.insertAdjacentHTML('beforeend', '<svg class="chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>');
+  const content = el('div', 'chapter-content');
+  let built = false;
+  header.onclick = () => {
+    card.classList.toggle('open');
+    if (!built && card.classList.contains('open')){
+      built = true;
+      const more = el('div', 'more-wrap');
+      makeList(content, more, exs, ex => {
+        const b = el('div', 'ex-btn');
+        const info = el('div');
+        info.appendChild(el('h4', '', ex.name));
+        info.appendChild(el('span', '', ex.count ? ex.count + ' questions' : 'Practice set'));
+        b.appendChild(info);
+        b.insertAdjacentHTML('beforeend', '<div class="play-icon"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg></div>');
+        b.onclick = () => openExercise(topic, ex);
+        return b;
+      }, { title: 'No exercises', text: 'Nothing to practice here yet.' });
+      content.appendChild(more);
+    }
+  };
+  card.appendChild(header);
+  card.appendChild(content);
+  return card;
+}
+$('testbook-back').onclick = () => history.back();
+async function openExercise(topic, ex){
+  const folder = currentBook.folder_name;
+  const url = rawUrl([folder, topic.topic_name, ex.file]);
+  showBusy(true);
+  try {
+    let data = exCache.get(url);
+    if (!data){
+      const r = await fetch(url);
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      data = await r.json();
+      if (!data || !Array.isArray(data.questions) || !data.questions.length) throw new Error('Invalid');
+      exCache.set(url, data);
+    }
+    showBusy(false);
+    startQuiz(topic, { exercise_name: data.exercise_name || ex.name, questions: data.questions });
+  } catch (err) {
+    console.error(err);
+    showBusy(false);
+    toast('Could not load this exercise. Please try again.');
+  }
+}
+
+/* =========================================================
+   QUIZ
+   ========================================================= */
+function startQuiz(topic, exercise){
+  if (!exercise.questions || !exercise.questions.length) return;
+  currentTopic = topic; currentExercise = exercise;
+  currentIndex = 0; answersState = {}; quizFinished = false; quizActive = true;
+  $('quiz-chapter-title').textContent = topic.topic_name || 'Chapter';
+  $('quiz-exercise-title').textContent = exercise.exercise_name || 'Exercise';
+  history.pushState({ v: 'quiz' }, '');
+  $('quiz-screen').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  $('quiz-footer').style.display = 'flex';
+  renderTray();
+  loadQuestion();
+}
+function exitQuiz(){
+  quizActive = false;
+  $('quiz-screen').style.display = 'none';
+  document.body.style.overflow = '';
+}
+function renderTray(){
+  const grid = $('tray-grid');
+  grid.innerHTML = '';
+  currentExercise.questions.forEach((q, i) => {
+    const b = el('button', 'tray-btn', String(i + 1));
+    b.type = 'button';
+    b.onclick = () => { currentIndex = i; loadQuestion(); };
+    grid.appendChild(b);
+  });
+}
+function updateTray(){
+  document.querySelectorAll('.tray-btn').forEach((b, i) => {
+    b.className = 'tray-btn';
+    if (i === currentIndex) b.classList.add('current');
+    const s = answersState[i];
+    if (s) b.classList.add(s.status);
+  });
+}
+function loadQuestion(){
+  const q = currentExercise.questions[currentIndex];
+  const total = currentExercise.questions.length;
+  selectedOptionId = null;
+  isAnswered = !!answersState[currentIndex];
+  $('quiz-progress').textContent = (currentIndex + 1) + ' / ' + total;
+  updateTray();
+
+  const c = $('question-container');
+  c.innerHTML = '';
+  const meta = el('div', 'question-meta');
+  meta.appendChild(el('span', 'q-num', 'Question ' + (currentIndex + 1)));
+  meta.appendChild(el('span', 'q-marks', '+4 / -1'));
+  c.appendChild(meta);
+  if (q.question_text){ const t = el('div', 'question-text'); t.innerHTML = q.question_text; c.appendChild(t); }
+  if (q.question_image){ const im = el('img', 'question-image'); im.alt = 'Question'; im.src = q.question_image; c.appendChild(im); }
+
+  const list = el('div', 'options-list');
+  (q.options || []).forEach((opt, i) => {
+    const o = el('div', 'option-item');
+    o.dataset.id = opt.id;
+    o.appendChild(el('div', 'option-label', String.fromCharCode(65 + i)));
+    const sp = el('span'); sp.innerHTML = opt.text || ''; o.appendChild(sp);
+    if (opt.image){ const oi = el('img', 'option-img'); oi.alt = 'Option'; oi.src = opt.image; o.appendChild(oi); }
+    o.onclick = () => selectOption(opt.id);
+    list.appendChild(o);
+  });
+  c.appendChild(list);
+
+  const sol = el('div', 'solution-box');
+  sol.id = 'solution-box';
+  sol.innerHTML = '<h4>Solution</h4><img id="sol-img" alt="Solution">';
+  c.appendChild(sol);
+
+  const last = currentIndex === total - 1;
+  $('next-btn').textContent = last ? 'Finish' : 'Next \u2192';
+  $('next-btn').style.display = 'none';
+  $('submit-btn').style.display = 'block';
+  $('submit-btn').disabled = true;
+  $('prev-btn').disabled = currentIndex === 0;
+
+  if (isAnswered) revealAnswer(q, answersState[currentIndex].selectedId);
+  $('question-container').scrollIntoView({ block: 'nearest' });
+}
+function selectOption(id){
+  if (isAnswered) return;
+  selectedOptionId = id;
+  document.querySelectorAll('.option-item').forEach(e => e.classList.toggle('selected', e.dataset.id === id));
+  $('submit-btn').disabled = false;
+}
+function submitAnswer(){
+  if (isAnswered || !selectedOptionId) return;
+  const q = currentExercise.questions[currentIndex];
+  const ok = (q.correct_answer_ids || []).includes(selectedOptionId);
+  answersState[currentIndex] = { status: ok ? 'correct' : 'wrong', selectedId: selectedOptionId };
+  isAnswered = true;
+  revealAnswer(q, selectedOptionId);
+  updateTray();
+}
+function revealAnswer(q, selectedId){
+  const right = q.correct_answer_ids || [];
+  document.querySelectorAll('.option-item').forEach(e => {
+    e.classList.remove('selected'); e.classList.add('locked');
+    if (right.includes(e.dataset.id)) e.classList.add('correct');
+    else if (e.dataset.id === selectedId) e.classList.add('wrong');
+  });
+  if (q.solution_image){
+    $('sol-img').src = q.solution_image;
+    $('solution-box').style.display = 'block';
+  }
+  $('submit-btn').style.display = 'none';
+  $('next-btn').style.display = 'block';
+}
+function nextQ(){
+  if (currentIndex < currentExercise.questions.length - 1){ currentIndex++; loadQuestion(); }
+  else showResult();
+}
+function prevQ(){ if (currentIndex > 0){ currentIndex--; loadQuestion(); } }
+function showResult(){
+  quizFinished = true;
+  const total = currentExercise.questions.length;
+  let ok = 0, bad = 0;
+  Object.values(answersState).forEach(s => s.status === 'correct' ? ok++ : bad++);
+  const skipped = total - ok - bad;
+  const score = ok * 4 - bad;
+  $('quiz-footer').style.display = 'none';
+  $('quiz-progress').textContent = 'Done';
+  const c = $('question-container');
+  c.innerHTML = '';
+  const r = el('div', 'result');
+  r.appendChild(el('h2', '', 'Practice Completed'));
+  r.appendChild(el('div', 'score', score + ' / ' + (total * 4)));
+  r.appendChild(el('div', 'sub', 'Your score (+4 correct, -1 wrong)'));
+  const st = el('div', 'stats');
+  [['ok', ok, 'Correct'], ['bad', bad, 'Wrong'], ['skip', skipped, 'Skipped']].forEach(a => {
+    const s = el('div', 'stat ' + a[0]); s.appendChild(el('b', '', String(a[1]))); s.appendChild(el('span', '', a[2])); st.appendChild(s);
+  });
+  r.appendChild(st);
+  const act = el('div', 'result-actions');
+  const retry = el('button', 'btn btn-primary', 'Try Again'); retry.type = 'button';
+  retry.onclick = () => { answersState = {}; currentIndex = 0; quizFinished = false; $('quiz-footer').style.display = 'flex'; renderTray(); loadQuestion(); };
+  const back = el('button', 'btn btn-light', 'Back to Chapters'); back.type = 'button';
+  back.onclick = () => history.back();
+  act.appendChild(retry); act.appendChild(back);
+  r.appendChild(act);
+  c.appendChild(r);
+}
+function quizGuardedExit(){
+  if (!quizFinished && Object.keys(answersState).length &&
+      !confirm('Exit practice? Your progress will be lost.')) return false;
+  return true;
+}
+$('quiz-exit').onclick = () => { if (quizGuardedExit()) history.back(); };
+$('submit-btn').onclick = submitAnswer;
+$('next-btn').onclick = nextQ;
+$('prev-btn').onclick = prevQ;
+
+/* =========================================================
+   HISTORY / BACK BUTTON
+   ========================================================= */
+history.replaceState({ v: 'home' }, '');
+window.addEventListener('popstate', e => {
+  const st = e.state || {};
+  const v = st.v || 'home';
+  if (quizActive && v !== 'quiz' && !quizGuardedExit()) { history.pushState({ v: 'quiz' }, ''); return; }
+  if (quizActive) exitQuiz();
+  if (v === 'quiz') return;
+  if (v === 'testbook'){
+    const book = testBooks.find(b => (b.book_id || b.folder_name) === st.id);
+    if (book) openTestBook(book, false); else showScreen('tests');
+    return;
+  }
+  showScreen(['home', 'books', 'tests'].includes(v) ? v : 'home');
+});
+
+/* =========================================================
+   TELEGRAM POPUP
+   ========================================================= */
+let tgTimer = null;
+function showTelegramPopup(){
+  $('tg-link').href = CONFIG.TELEGRAM_LINK;
+  const ov = $('tg-overlay'), bar = $('tg-bar');
+  ov.classList.add('show');
+  let left = CONFIG.POPUP_SECONDS;
+  $('tg-timer').textContent = 'Closing in ' + left + 's';
+  bar.style.transitionDuration = CONFIG.POPUP_SECONDS + 's';
+  requestAnimationFrame(() => requestAnimationFrame(() => bar.classList.add('run')));
+  tgTimer = setInterval(() => {
+    left--;
+    if (left <= 0) closeTelegramPopup();
+    else $('tg-timer').textContent = 'Closing in ' + left + 's';
+  }, 1000);
+}
+function closeTelegramPopup(){
+  clearInterval(tgTimer);
+  $('tg-overlay').classList.remove('show');
+}
+$('tg-close').onclick = closeTelegramPopup;
+$('tg-overlay').addEventListener('click', e => { if (e.target === $('tg-overlay')) closeTelegramPopup(); });
+
+/* =========================================================
+   INIT
+   ========================================================= */
+async function init(){
+  post('/api/visit').catch(() => {});
+  const minWait = new Promise(r => setTimeout(r, 700));
+  await Promise.all([loadBooks(), loadTests()]);
+  await minWait;
+  $('loader').classList.add('hide');
+  setTimeout(() => { $('loader').style.display = 'none'; showTelegramPopup(); }, 350);
+}
+showScreen('home');
+init();
+</script>
+</body>
+</html>

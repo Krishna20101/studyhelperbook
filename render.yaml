@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: book-library
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot_server.py
+    healthCheckPath: /ping
+    autoDeploy: false
+    # When creating the service, choose the Free plan in the UI.
+    # Enter the values for these env vars when prompted:
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: STORAGE_CHAT_ID
+        sync: false
+      - key: FIREBASE_DB_URL
+        sync: false
+      - key: FIREBASE_API_KEY
+        sync: false
+      - key: FIREBASE_EMAIL
+        sync: false
+      - key: FIREBASE_PASSWORD
+        sync: false
+      - key: VPLINK_API_TOKEN
+        sync: false
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: CACHE_LIMIT_MB
+        sync: false

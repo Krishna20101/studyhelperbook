@@ -1,0 +1,4 @@
+pypdf>=4.0
+# Big PDF support (20 MB -> ~2 GB) - needs API_ID + API_HASH env vars
+# (free at https://my.telegram.org). If you remove them, you can comment this out.
+telethon[tqdm]>=1.36
